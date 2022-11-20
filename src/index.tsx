@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ChoreContext, ChoreProvider, defaultChoreContext } from './ChoreContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
+  <ChoreProvider value={defaultChoreContext}>
     <App />
-  </React.StrictMode>
+  </ChoreProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
