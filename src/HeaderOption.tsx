@@ -3,20 +3,17 @@ import './App.css';
 
 type HeaderOptionProps = {
     text: string,
-    defaultChecked: boolean,
+    checked: boolean,
     onChange: (checked: boolean) => void
 }
 
 function HeaderOption(props: HeaderOptionProps) {
-    const [checked, setChecked] = useState(props.defaultChecked);
-
-    const onChange = () => {
-        props.onChange(checked);
-        setChecked(val => { return !val });
-    };
+  const onChange = (event) => {
+    props.onChange(event.target.checked)
+  };
 
   return (
-    <span>{props.text}: <input type="checkbox" checked={checked} onChange={onChange} /></span>
+    <span>{props.text}: <input type="checkbox" checked={props.checked} onChange={onChange} /></span>
   );
 }
 

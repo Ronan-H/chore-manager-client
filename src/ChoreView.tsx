@@ -3,20 +3,21 @@ import './App.css';
 import { ChoreContext } from './ChoreContext';
 import ChoreElement from './ChoreElement';
 
-function ChoreView() {
+type ChoreViewProps = {
+    showExpired: boolean,
+    showExpiring: boolean
+}
+
+function ChoreView(props: ChoreViewProps) {
     const choreContext = useContext(ChoreContext);
 
-    let shownChores: Chore[] = [];
-    
-    if (choreContext.showAll) {
+    let shownChores: Chore[] = [
+        ...(props.showExpired ? choreContext.expiredChores : []),
+        ...(props.showExpiring ? choreContext.expiringChores : []),
+    ];
+
+    if (shownChores.length === 0) {
         shownChores = choreContext.allChores;
-    } else {
-        if (choreContext.showExpired) {
-            shownChores = [...choreContext.expiredChores];
-        }
-        if (choreContext.showExpiring) {
-            shownChores = [...choreContext.expiringChores];
-        }
     }
 
     console.log('Re-render chore view')

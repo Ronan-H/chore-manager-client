@@ -1,17 +1,16 @@
-import React, { useContext, useEffect } from 'react';
-import logo from './logo.svg';
+import React, { useContext, useEffect, useState } from 'react';
 import './App.css';
 import Header from './Header';
-import { ChoreContext } from './ChoreContext';
 import ChoreView from './ChoreView';
 
 function App() {
-  const choreContext = useContext(ChoreContext);
+  const [showExpired, setShowExpired] = useState(true);
+  const [showExpiring, setShowExpiring] = useState(false);
 
   return (
     <div className="app">
-      <Header />
-      <ChoreView />
+      <Header {...{showExpired, setShowExpired, showExpiring, setShowExpiring}} />
+      <ChoreView showExpired={showExpired} showExpiring={showExpiring} />
     </div>
   );
 }
