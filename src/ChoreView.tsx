@@ -23,9 +23,9 @@ function ChoreView(props: ChoreViewProps) {
     console.log('Re-render chore view')
 
     return (
-        <div className='chore-view'>
-            {shownChores.map(chore => <ChoreElement chore={chore} />)}
-        </div>
+        <table className='chore-view'>
+            {shownChores.map(chore => <ChoreElement chore={chore} resetChore={() => {choreContext.resetChore(chore.id)}} />)}
+        </table>
     );
 }
 

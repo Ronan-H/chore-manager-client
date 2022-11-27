@@ -3,20 +3,22 @@ import React, { useEffect, useState } from 'react';
 type ChoreContextType = {
     expiredChores: Chore[],
     expiringChores: Chore[]
-    allChores: Chore[]
+    allChores: Chore[],
+    resetChore: Function
 }
 
 export const defaultChoreContext: ChoreContextType = {
     expiredChores: [],
     expiringChores: [],
-    allChores: []
+    allChores: [],
+    resetChore: () => {}
 };
 
 export const ChoreContext = React.createContext<ChoreContextType>(defaultChoreContext);
 
 export const ChoreProvider = ({ children }: any) => {
     const [data, setData] = useState(defaultChoreContext);
-  
+
     useEffect(() => {
         const updatedData: ChoreContextType = {
             ...defaultChoreContext,
@@ -71,6 +73,21 @@ export const ChoreProvider = ({ children }: any) => {
                 days_remaining: 3
             }
         ];
+        updatedData.resetChore = (id) => {
+            const reset = (chore: Chore) => {
+                return {
+                    ...chore,
+                    days_remaining: chore.id === id ? chore.frequency : chore.days_remaining
+                };
+            };
+
+            setData((oldData) => { return {
+                expiredChores: oldData.expiredChores.map(reset),
+                expiringChores: oldData.expiringChores.map(reset),
+                allChores: oldData.allChores.map(reset),
+                resetChore: oldData.resetChore
+            }});
+        };
         setData(updatedData);
 
         // const baseUrl = 'http://Teresas-Mac.local:8000';

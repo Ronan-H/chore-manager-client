@@ -13,7 +13,7 @@ function HeaderOption(props: HeaderOptionProps) {
   };
 
   return (
-    <span>{props.text}: <input type="checkbox" checked={props.checked} onChange={onChange} /></span>
+    <span className='header-option'>{props.text}: <input type="checkbox" checked={props.checked} onChange={onChange} /></span>
   );
 }
 

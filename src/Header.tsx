@@ -17,11 +17,11 @@ function Header(props: HeaderProps) {
     <header className="header">
       <span>
         <HeaderOption
-          text='Show Expired'
+          text='Expired'
           checked={props.showExpired}
           onChange={props.setShowExpired} />
         <HeaderOption
-          text='Show Expiring'
+          text='Expiring'
           checked={props.showExpiring}
           onChange={props.setShowExpiring} />
       </span>
