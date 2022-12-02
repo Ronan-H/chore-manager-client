@@ -81,9 +81,17 @@ export const ChoreProvider = ({ children }: any) => {
                 };
             };
 
+            const isChoreExpired = (chore: Chore) => {
+                return chore.days_remaining === 0;
+            };
+
+            const isChoreExpiring = (chore: Chore) => {
+                return chore.days_remaining === 1;
+            };
+
             setData((oldData) => { return {
-                expiredChores: oldData.expiredChores.map(reset),
-                expiringChores: oldData.expiringChores.map(reset),
+                expiredChores: oldData.expiredChores.map(reset).filter(isChoreExpired),
+                expiringChores: oldData.expiringChores.map(reset).filter(isChoreExpiring),
                 allChores: oldData.allChores.map(reset),
                 resetChore: oldData.resetChore
             }});
@@ -125,7 +133,7 @@ export const ChoreProvider = ({ children }: any) => {
         //     setData(newData);
         // });
     }, []);
-   
+
    const { Provider } = ChoreContext;
    return(
        <Provider value={data}>

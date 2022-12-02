@@ -10,15 +10,16 @@ type ChoreViewProps = {
 
 function ChoreView(props: ChoreViewProps) {
     const choreContext = useContext(ChoreContext);
-
     let shownChores: Chore[] = [
         ...(props.showExpired ? choreContext.expiredChores : []),
         ...(props.showExpiring ? choreContext.expiringChores : []),
     ];
 
-    if (shownChores.length === 0) {
+    if (!props.showExpired && !props.showExpiring && shownChores.length === 0) {
         shownChores = choreContext.allChores;
     }
+
+    shownChores.sort((a, b) => a.days_remaining - b.days_remaining);
 
     console.log('Re-render chore view')
 
