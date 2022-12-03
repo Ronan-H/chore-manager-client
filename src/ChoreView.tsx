@@ -21,12 +21,10 @@ function ChoreView(props: ChoreViewProps) {
 
     shownChores.sort((a, b) => a.days_remaining - b.days_remaining);
 
-    console.log('Re-render chore view')
-
     return (
-        <table className='chore-view'>
+        <div className='chore-view'>
             {shownChores.map(chore => <ChoreElement chore={chore} resetChore={() => {choreContext.resetChore(chore.id)}} />)}
-        </table>
+        </div>
     );
 }
 

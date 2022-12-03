@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 type HeaderOptionProps = {
@@ -8,12 +8,14 @@ type HeaderOptionProps = {
 }
 
 function HeaderOption(props: HeaderOptionProps) {
-  const onChange = (event) => {
-    props.onChange(event.target.checked)
-  };
+  const [checked, setChecked] = useState(props.checked);
+
+  useEffect(() => {
+    props.onChange(checked);
+  }, [checked]);
 
   return (
-    <span className='header-option'>{props.text}: <input type="checkbox" checked={props.checked} onChange={onChange} /></span>
+    <span className={`header-option header-option-${checked ? 'checked' : 'unchecked'}`} onClick={() => setChecked(val => !val)}>{props.text}</span>
   );
 }
 

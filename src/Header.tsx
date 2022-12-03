@@ -15,16 +15,14 @@ function Header(props: HeaderProps) {
 
   return (
     <header className="header">
-      <span>
-        <HeaderOption
-          text='Expired'
-          checked={props.showExpired}
-          onChange={props.setShowExpired} />
-        <HeaderOption
-          text='Expiring'
-          checked={props.showExpiring}
-          onChange={props.setShowExpiring} />
-      </span>
+      <HeaderOption
+        text='Expired'
+        checked={props.showExpired}
+        onChange={props.setShowExpired} />
+      <HeaderOption
+        text='Expiring'
+        checked={props.showExpiring}
+        onChange={props.setShowExpiring} />
     </header>
   );
 }

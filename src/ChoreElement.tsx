@@ -20,10 +20,10 @@ function ChoreElement(props: ChoreElementProps) {
     };
 
     return (
-        <tr className='chore-row' onClick={onClick}>
-            <th className="chore-header">{chore.name}</th>
-            <td><i><b>{chore.days_remaining}</b> days remaining</i></td>
-        </tr>
+        <div className='chore-row' onClick={onClick}>
+            <span className="chore-header"><b>{chore.name}</b></span>
+            <span><i><b>{chore.days_remaining}</b> days remaining</i></span>
+        </div>
     );
 }
 
